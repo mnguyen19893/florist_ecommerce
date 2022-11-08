@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'home#index'
 
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # update address and province
+  resources :address, only: [:edit, :update]
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+
 end

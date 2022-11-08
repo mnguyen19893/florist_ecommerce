@@ -14,6 +14,10 @@
   <body>
   <section class="section">
     <div class="container">
+      <% if user_signed_in? %>
+        <%= render 'layouts/navbar' %>
+      <% end %>
+
       <% unless notice.to_s.strip.empty? %>
         <div class="notification is-success">
           <button class="delete" onclick="this.parentElement.style.display='none'"></button>

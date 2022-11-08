@@ -1,0 +1,61 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="<%= root_path %>">
+      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+    </a>
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item">
+        Home
+      </a>
+
+      <a class="navbar-item">
+        About
+      </a>
+
+      <a class="navbar-item">
+        Contact
+      </a>
+    </div>
+
+    <div class="navbar-end">
+      <% if user_signed_in? %>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            <%= current_user.email %>
+          </a>
+
+          <div class="navbar-dropdown">
+            <%= link_to "Change password", edit_user_registration_path, class: 'navbar-item'  %>
+            <%= link_to "Update address", edit_address_path(current_user.address), class: 'navbar-item' %>
+
+            <hr class="navbar-divider">
+            <%= link_to 'Logout', destroy_user_session_path, class: 'navbar-item', data: { "turbo-method": :delete } %>
+          </div>
+        </div>
+      <% else %>
+        <div class="navbar-item">
+          <div class="buttons">
+            <a class="button is-primary">
+              <strong>Sign up</strong>
+            </a>
+            <a class="button is-light">
+              Log in
+            </a>
+          </div>
+        </div>
+      <% end %>
+
+
+
+    </div>
+  </div>
+</nav>
