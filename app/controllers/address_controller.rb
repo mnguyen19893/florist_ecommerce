@@ -1,8 +1,7 @@
 class AddressController < ApplicationController
   before_action :authenticate_user!
 
-  def edit
-  end
+  def edit; end
 
   def update
     respond_to do |format|
@@ -20,7 +19,6 @@ class AddressController < ApplicationController
   private
   def address_params
     params[:address][:province_id] = Integer(params[:address][:province_id])
-    puts "Hoang #{params[:address]}"
     params.require(:address).permit(:number, :street, :city, :postal_code, :province_id)
   end
 end
