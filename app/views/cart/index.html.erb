@@ -1,1 +1,48 @@
-cart index
+<div class="content">
+  <h1>My Cart</h1>
+  <%= form_with url: checkout_index_path, method: :get do %>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @products.each do |product| %>
+        <tr>
+          <th><%= link_to image_tag(product.image.variant(:thumb), alt: product.name), product %></th>
+          <td><%= product.name %></td>
+          <td><%= number_to_currency product.price %></td>
+          <td>
+            <div class="select">
+              <select name="<%= product.id %>">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+              </select>
+            </div>
+          </td>
+          <td>
+            <%= button_to cart_path(product), method: :delete, class: 'button is-danger' do %>
+              Remove From Cart
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    <%= button_tag 'Check out', class: 'button is-warning is-fullwidth' %>
+  <% end %>
+</div>

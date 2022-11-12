@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   # category
   resources :category, only: [:index, :show]
 
+  # checkout
+  resources :checkout, only: [:index]
+
   # admin_users
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

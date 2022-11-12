@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   helper_method :cart
 
   def initialize_session
-    puts "Hoang initialize_session"
     if user_signed_in?
       session[:shopping_cart] ||= [] # empty array of product IDs
     end
