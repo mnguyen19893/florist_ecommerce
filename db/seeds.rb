@@ -1,9 +1,21 @@
+require 'csv'
+require 'faker'
+
+# to delete all ActiveStorage in database and in local storage
+# rails c
+# ActiveStorage::Attachment.all.each { |attachment| attachment.purge }
+
+AdminUser.destroy_all
 Address.delete_all
 Province.delete_all
 User.delete_all
+Product.delete_all
+Category.delete_all
 
+########################################################################################################################
 # Provinces and Taxes
 # https://www.retailcouncil.org/resources/quick-facts/sales-tax-rates-by-province/https://www.retailcouncil.org/resources/quick-facts/sales-tax-rates-by-province/
+#######################################################################################################################
 Province.create(name: 'Alberta',                  pst: 0,    gst: 0.05, hst: 0)
 Province.create(name: 'British Columbia',         pst: 0.07, gst: 0.05, hst: 0)
 mb = Province.create(name: 'Manitoba',            pst: 0.07, gst: 0.05, hst: 0)
@@ -18,7 +30,9 @@ Province.create(name: 'Quebec',                   pst: 0.09975,gst: 0.05, hst: 0
 Province.create(name: 'Saskatchewan',             pst: 0.06,  gst: 0.05, hst: 0)
 Province.create(name: 'Yukon',                    pst: 0,     gst: 0.05, hst: 0)
 
-# User and address
+########################################################################################################################
+# Create a user and an address
+########################################################################################################################
 user = User.create(
   email: 'uhoang19893@gmail.com',
   password: '123456',
@@ -34,5 +48,40 @@ address = Address.create(
   user_id: user.id
 )
 
+########################################################################################################################
+# Create products and categories
+########################################################################################################################
+csv_file = Rails.root.join('db/Flower_Table.csv')
+csv_data = File.read(csv_file)
+flowers = CSV.parse(csv_data, headers: true)
 
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+i = 0
+flowers.each do |flower|
+  category = Category.find_or_create_by(name: flower['Flower_group'])
+  if category && category.valid?
+    f = category.products.create(
+      name: flower['Flower name'],
+      description_url: flower['url'],
+      containers: flower['Containers'],
+      flower_time: flower['Flower Time'],
+      price: Faker::Commerce.price(range: 5.00..200.00)
+    )
+    puts "Creating flower ##{i} #{f.name}"
+    query = URI.encode_www_form_component([f.name + " flower"])
+    downloaded_image = URI.open("https://source.unsplash.com/600x600/?#{query}")
+    f.image.attach(io: downloaded_image, filename: "m-#{f.name}.jpg")
+    sleep(1)
+
+    i += 1
+    break if i == 20
+  end
+end
+puts "Number of categories created: #{Category.count}"
+puts "Number of products created: #{Product.count}"
+
+########################################################################################################################
+# Admin user
+########################################################################################################################
+if Rails.env.development?
+  AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+end

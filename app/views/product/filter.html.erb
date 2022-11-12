@@ -1,0 +1,7 @@
+We can find <%= @products.count %> products with the filter "<%= @filter %>"
+<div class="columns is-multiline is-mobile">
+
+  <% @products.each do |product| %>
+    <%= render 'product', product: product %>
+  <% end %>
+</div>

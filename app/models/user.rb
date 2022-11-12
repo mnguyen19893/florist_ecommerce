@@ -15,7 +15,7 @@ class User < ApplicationRecord
       city: '',
       postal_code: '',
       province_id: Province.first.id,
-      user_id: self.id
+      user_id: id
     )
   end
 end

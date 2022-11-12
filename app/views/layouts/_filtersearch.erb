@@ -1,0 +1,24 @@
+<div class="columns">
+  <div class="column">
+    <%= form_with(url: filter_product_index_path, method: :get, local: true) do |f| %>
+      <div class="select">
+        <select name="filter">
+          <option id="0">Filter products</option>
+          <option id="1">On sale</option>
+          <option id="2">New</option>
+        </select>
+      </div>
+      <%= submit_tag "Filter", class: "button is-primary" %>
+    <% end %>
+
+  </div>
+  <!--  <div class="column">-->
+  <!--    Second column-->
+  <!--  </div>-->
+  <!--  <div class="column">-->
+  <!--    Third column-->
+  <!--  </div>-->
+  <!--  <div class="column">-->
+  <!--    Fourth column-->
+  <!--  </div>-->
+</div>
