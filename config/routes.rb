@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # product
   resources :product, only: [:index, :show] do
     collection do
       get 'filter'
@@ -6,6 +7,10 @@ Rails.application.routes.draw do
     end
   end
 
+  # cart
+  resources :cart, only: %i[create destroy]
+
+  # category
   resources :category, only: [:index, :show]
 
   # admin_users

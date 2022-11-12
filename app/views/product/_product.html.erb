@@ -3,7 +3,7 @@
     <div class="card">
       <div class="card-image">
         <figure class="image is-4by3">
-          <%= link_to image_tag(product.image.variant(:thumb), alt: product.name ), product %>
+          <%= link_to image_tag(product.image.variant(:thumb), alt: product.name), product %>
         </figure>
       </div>
       <div class="card-content">
@@ -19,7 +19,9 @@
         <div class="content">
           Flower family name: <%= link_to product.category.name, product.category %>
         </div>
+        <%= render 'product/cart', product: product %>
       </div>
     </div>
   </a>
 </div>
+
