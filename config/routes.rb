@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   # cart
-  resources :cart, only: %i[create destroy]
+  resources :cart, only: %i[index create destroy]
 
   # category
   resources :category, only: [:index, :show]

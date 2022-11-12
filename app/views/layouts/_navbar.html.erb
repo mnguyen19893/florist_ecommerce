@@ -24,9 +24,18 @@
       <a class="navbar-item" href="<%= contact_path %>">
         Contact
       </a>
+      <% if cart.present? %>
+        <a class="navbar-item" href="<%= cart_index_path %>">
+          Cart (<%= cart.size %>)
+          </span>
+        </a>
+      <% end %>
+
     </div>
 
     <div class="navbar-end">
+
+
       <% if user_signed_in? %>
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">
