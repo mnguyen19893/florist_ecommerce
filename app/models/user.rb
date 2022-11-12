@@ -7,6 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :address
+  has_many :orders
 
   def add_address
     Address.create(

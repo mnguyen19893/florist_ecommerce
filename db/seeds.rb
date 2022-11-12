@@ -11,6 +11,7 @@ Province.delete_all
 User.delete_all
 Product.delete_all
 Category.delete_all
+OrderStatus.delete_all
 
 ########################################################################################################################
 # Provinces and Taxes
@@ -67,7 +68,7 @@ flowers.each do |flower|
       price: Faker::Commerce.price(range: 5.00..200.00)
     )
     puts "Creating flower ##{i} #{f.name}"
-    query = URI.encode_www_form_component([f.name + " flower"])
+    query = URI.encode_www_form_component([f.name + ' flower'])
     downloaded_image = URI.open("https://source.unsplash.com/600x600/?#{query}")
     f.image.attach(io: downloaded_image, filename: "m-#{f.name}.jpg")
     sleep(1)
@@ -78,6 +79,13 @@ flowers.each do |flower|
 end
 puts "Number of categories created: #{Category.count}"
 puts "Number of products created: #{Product.count}"
+
+########################################################################################################################
+# Order Status
+########################################################################################################################
+OrderStatus.create(name: 'new')
+OrderStatus.create(name: 'paid')
+OrderStatus.create(name: 'shipped')
 
 ########################################################################################################################
 # Admin user
