@@ -20,7 +20,10 @@
     <% end %>
 
     <% if user_signed_in? %>
-      <%= render 'layouts/filtersearch' %>
+      <div class="columns">
+        <%= render 'layouts/filter' %>
+        <%= render 'layouts/search' %>
+      </div>
     <% end %>
 
     <% unless notice.to_s.strip.empty? %>

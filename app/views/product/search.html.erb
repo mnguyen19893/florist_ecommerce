@@ -1,0 +1,14 @@
+<div class="content">
+  <p class="mb-5">
+    Found <%= pluralize(@products.length, 'Product') %> found when search for "<%= params[:keywords]%>"
+    <% if @category %>
+      , category: "<%= @category.name %>"
+    <% end %>
+  </p>
+</div>
+<div class="columns is-multiline is-mobile">
+
+  <% @products.each do |product| %>
+    <%= render 'product', product: product %>
+  <% end %>
+</div>
