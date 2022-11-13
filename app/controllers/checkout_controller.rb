@@ -7,27 +7,57 @@ class CheckoutController < ApplicationController
     process_tax
 
     # create an order
-    order_status = OrderStatus.where(name: 'new')
-    order = order_status.orders.create(
-      customer_id: current_user.id,
+    order_status = OrderStatus.find_by_name('new')
+    order = Order.create(
+      user_id: current_user.id,
+      order_status_id: order_status.id,
       pst: @pst,
       gst: @gst,
       hst: @hst
     )
+    if order && order.valid?
+      # Create OrderProducts
+      @products.each do |product|
+        OrderProduct.create(
+          order_id: order.id,
+          product_id: product.id,
+          quantity: params[product.id.to_s].to_i,
+          price: product.price
+        )
+      end
 
-    # Create OrderProducts
-    @products.each do |product|
-      OrderProduct.create(
-        order_id: order.id,
-        product_id: product.id,
-        quantity: params[product.id.to_s].to_i,
-        price: product.price
+      # Stripe checkout
+      # establish a connection to Stripe, and then redirect the user to the payment screen.
+      @session = Stripe::Checkout::Session.create(
+        payment_method_types: [:card],
+        success_url: checkout_success_url + "?session_id={CHECKOUT_SESSION_ID}",
+        cancel_url: checkout_cancel_url,
+        line_items: [
+          {
+            name: product.name,
+            description: product.description,
+            amount: product.price_cents,
+            currency: "cad",
+            quantity: 1 # hard code, not good to do but for testing only.
+          },
+          {
+            name: 'GST',
+            description: "Goods and Services taxes",
+            amount: (product.price_cents * 0.05).to_i,
+            currency: "cad",
+            quantity: 1
+          }
+        ]
       )
+
+      respond_to do |format|
+        format.js #render app/views/checkout/create.js.erb
+      end
+
+    else
+      flash[:notice] = "Cannot place your order."
+      redirect_to root_path
     end
-
-    flash[:notice] = "Your order is placed successfully."
-    redirect_to root_path
-
   end
 
   def success
