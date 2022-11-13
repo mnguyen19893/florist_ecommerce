@@ -15,6 +15,12 @@ Rails.application.routes.draw do
 
   # checkout
   resources :checkout, only: [:index]
+  scope "/checkout" do
+    post "create",  to: "checkout#create",  as: "checkout_create"
+    get "success",  to: "checkout#success", as: "checkout_success"
+    get "cancel",   to: "checkout#cancel",  as: "checkout_cancel"
+  end
+
 
   # admin_users
   devise_for :admin_users, ActiveAdmin::Devise.config

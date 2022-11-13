@@ -1,0 +1,80 @@
+<div class="content">
+  <h1>Checkout</h1>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Image</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <th><%= link_to image_tag(product.image.variant(:thumb), alt: product.name), product %></th>
+        <td><%= product.name %></td>
+        <td><%= number_to_currency product.price %></td>
+        <td><%= params["#{product.id}"] %></td>
+        <td><%= number_to_currency product.price * params["#{product.id}"].to_i %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <h1>Shipping address</h1>
+  <p><%= current_user.email %></p>
+  <p><%= current_user.address.number %> <%= current_user.address.street %></p>
+  <p><%= current_user.address.city %>, <%= current_user.address.province.name %>, <%= current_user.address.postal_code %></p>
+  <p>
+    <%= link_to "Update address", edit_address_path(current_user.address), class: "button is-primary" %>
+  </p>
+
+  <h1>Order Summary</h1>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Total before tax:</td>
+        <td><%= number_to_currency @total_before_taxes %></td>
+      </tr>
+      <% if @pst > 0 %>
+      <tr>
+        <td>Estimated PST(<%= number_to_percentage @pst * 100 %>):</td>
+        <td><%= number_to_currency @pst_price %></td>
+      </tr>
+      <% end %>
+      <% if @gst > 0 %>
+      <tr>
+        <td>Estimated GST(<%= number_to_percentage @gst * 100 %>):</td>
+        <td><%= number_to_currency @gst_price %></td>
+      </tr>
+    <% end %>
+    <% if @hst > 0 %>
+      <tr>
+        <td>Estimated HST(<%= number_to_percentage @hst * 100 %>):</td>
+        <td><%= number_to_currency @hst_price %></td>
+      </tr>
+    <% end %>
+      <tr>
+        <td><h2 class="has-text-danger">Order total</h2></td>
+        <td><h2 class="has-text-danger"><%= number_to_currency @total %></h2></td>
+      </tr>
+    </tbody>
+  </table>
+  <%= form_with url:checkout_create_path, remote: true do |form|  %>
+    <% @products.each do |product| %>
+      <input type="hidden" name="<%= product.id %>" value="<%= @product_quantity[product.id] %>">
+    <% end %>
+    <%= button_tag 'Place your order', class: 'button is-warning is-fullwidth' %>
+  <% end %>
+</div>
+
+<%= @quantity %>

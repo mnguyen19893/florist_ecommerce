@@ -1,0 +1,5 @@
+<div class="columns is-multiline is-mobile">
+  <% @category.products.each do |product| %>
+    <%= render 'product/product', product: product %>
+  <% end %>
+</div>

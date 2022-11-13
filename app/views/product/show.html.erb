@@ -1,0 +1,11 @@
+
+<figure class="image is-3by1">
+<%= image_tag(@product.image.variant(:normal), alt: @product.name) %>
+</figure>
+<h1 class="title"><%= @product.name %></h1>
+<h2 class="subtitle"><%= number_to_currency @product.price %></h2>
+<p>Description: <%= link_to 'More information', @product.description_url %></p>
+<p>Containers: <%= @product.containers %></p>
+<p>Flower time: <%= @product.flower_time %></p>
+<p>Flower group: <%= link_to @product.category.name, @product.category %></p>
+<%= render 'product/cart', product: @product %>
