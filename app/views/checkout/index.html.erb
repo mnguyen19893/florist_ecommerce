@@ -16,9 +16,19 @@
       <tr>
         <th><%= link_to image_tag(product.image.variant(:thumb), alt: product.name), product %></th>
         <td><%= product.name %></td>
-        <td><%= number_to_currency product.price %></td>
+        <td>
+          <%#= number_to_currency product.price %>
+          <%= render 'product/sale', product: product %>
+        </td>
         <td><%= params["#{product.id}"] %></td>
-        <td><%= number_to_currency product.price * params["#{product.id}"].to_i %></td>
+        <td>
+          <% if product.sale != nil %>
+            <%= number_to_currency (product.price - product.price * product.sale ) * params["#{product.id}"].to_i %>
+          <% else %>
+            <%= number_to_currency product.price* params["#{product.id}"].to_i %>
+          <% end %>
+
+        </td>
       </tr>
     <% end %>
     </tbody>

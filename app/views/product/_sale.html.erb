@@ -1,0 +1,8 @@
+<% if product.sale != nil %>
+  <p class="subtitle is-6">
+    <del><%= number_to_currency product.price %></del>
+    <%= number_to_currency product.price - product.price * product.sale %>
+  </p>
+<% else %>
+  <p class="subtitle is-6"><%= number_to_currency product.price %></p>
+<% end %>

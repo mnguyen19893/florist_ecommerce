@@ -1,5 +1,6 @@
 class CartController < ApplicationController
   def index
+    # TODO: Remove from cart button is not available for the first product
     @products = Product.find(session[:shopping_cart])
   end
 

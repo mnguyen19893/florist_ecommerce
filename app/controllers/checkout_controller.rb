@@ -78,7 +78,11 @@ class CheckoutController < ApplicationController
     }
     @products.each do |product|
       @product_quantity[product.id] = params[product.id.to_s].to_i
-      @total_before_taxes += product.price * params[product.id.to_s].to_i
+      @total_before_taxes += if product.sale != nil
+                               (product.price - product.price * product.sale) * params[product.id.to_s].to_i
+                             else
+                               product.price * params[product.id.to_s].to_i
+                             end
     end
     @pst = current_user.address.province.pst
     @gst = current_user.address.province.gst

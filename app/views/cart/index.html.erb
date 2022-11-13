@@ -14,9 +14,11 @@
       <tbody>
       <% @products.each do |product| %>
         <tr>
-          <th><%= link_to image_tag(product.image.variant(:thumb), alt: product.name), product %></th>
+          <td><%= link_to image_tag(product.image.variant(:thumb), alt: product.name), product %></td>
           <td><%= product.name %></td>
-          <td><%= number_to_currency product.price %></td>
+          <td>
+            <%= render 'product/sale', product: product %>
+          </td>
           <td>
             <div class="select">
               <select name="<%= product.id %>">
@@ -34,15 +36,16 @@
             </div>
           </td>
           <td>
-            <%= button_to cart_path(product), method: :delete, class: 'button is-danger' do %>
-              Remove From Cart
+            <% if cart.include?(product) %>
+              <%= button_to cart_path(product), method: :delete, class: 'button is-danger' do %>
+                Remove From Cart
+              <% end %>
             <% end %>
           </td>
         </tr>
       <% end %>
       </tbody>
     </table>
-
     <%= button_tag 'Check out', class: 'button is-warning is-fullwidth' %>
   <% end %>
 </div>

@@ -21,6 +21,9 @@ Rails.application.routes.draw do
     get "cancel",   to: "checkout#cancel",  as: "checkout_cancel"
   end
 
+  # order
+  resources :order, only: %w[index show]
+
 
   # admin_users
   devise_for :admin_users, ActiveAdmin::Devise.config
