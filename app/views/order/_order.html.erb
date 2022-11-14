@@ -1,4 +1,6 @@
 <%= link_to "Order ##{order.id}", order_path(order)  %>
+<p>Status: <%= order.order_status.name %></p>
+
 <p>Products:</p>
 <table class="table">
   <thead>

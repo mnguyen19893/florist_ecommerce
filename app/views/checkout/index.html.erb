@@ -83,6 +83,6 @@
     <% @products.each do |product| %>
       <input type="hidden" name="<%= product.id %>" value="<%= @product_quantity[product.id] %>">
     <% end %>
-    <%= button_tag 'Place your order', class: 'button is-warning is-fullwidth' %>
+    <%= button_tag 'Place your order', data: { turbo: false }, class: 'button is-warning is-fullwidth' %>
   <% end %>
 </div>
