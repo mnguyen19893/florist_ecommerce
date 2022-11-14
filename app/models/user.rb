@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   has_one :address
   has_many :orders
+  accepts_nested_attributes_for :orders
 
   def add_address
     Address.create(

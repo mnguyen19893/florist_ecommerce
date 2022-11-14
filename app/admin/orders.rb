@@ -10,11 +10,18 @@ ActiveAdmin.register Order do
     column :user
     column :order_status
     column :products do |order|
-      order.products.map { |p| p.name }.join(', ').html_safe
+      order.order_products.map { |op| "#{op.product.name} - #{number_to_currency op.price}" }.join('<br>').html_safe
     end
-    column :pst
-    column :gst
-    column :hst
+    column :price_before_tax do |order|
+      total_before_tax = 0
+      order.order_products.each do |op|
+        total_before_tax += op.price * op.quantity
+      end
+      number_to_currency total_before_tax
+    end
+    column :tax do |order|
+      number_to_percentage (order.pst + order.gst + order.hst) * 100
+    end
     column :grand_total do |order|
       total_before_tax = 0
       order.order_products.each do |op|
@@ -31,8 +38,27 @@ ActiveAdmin.register Order do
     attributes_table do
       row :user
       row :order_status_id
-      row :products do |order|
-        order.products.map { |p| p.name }.join(', ').html_safe
+      row :order_products do |order|
+        order.order_products.map { |op| "#{op.product.name} - #{number_to_currency op.price}" }.join('<br>').html_safe
+      end
+      row :total_before_tax do |order|
+        total_before_tax = 0
+        order.order_products.each do |op|
+          total_before_tax += op.price * op.quantity
+        end
+        number_to_currency total_before_tax
+      end
+      row :tax do |order|
+        number_to_percentage (order.pst + order.gst + order.hst) * 100
+      end
+      row :grand_total do |order|
+        total_before_tax = 0
+        order.order_products.each do |op|
+          total_before_tax += op.price * op.quantity
+        end
+        total_tax = order.pst + order.gst + order.hst
+        grand_total = total_before_tax + (total_before_tax * total_tax)
+        number_to_currency grand_total
       end
     end
   end
@@ -52,5 +78,4 @@ ActiveAdmin.register Order do
 
     f.actions
   end
-
 end
