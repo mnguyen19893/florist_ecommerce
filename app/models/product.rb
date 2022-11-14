@@ -11,6 +11,6 @@ class Product < ApplicationRecord
 
   validates :name, presence: true
   validates :description_url, presence: true
-  validates :sale, numericality: true, inclusion: 0..1
+  validates :sale, numericality: true, inclusion: 0..1, allow_blank: true
   validates :price, numericality: true
 end

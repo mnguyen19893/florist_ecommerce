@@ -1,2 +1,41 @@
-<h1>Order#show</h1>
-<p>Find me in app/views/order/show.html.erb</p>
+<div class="content">
+  <%= render 'order', order: @order %>
+
+  <h1>Order Summary</h1>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>Total before tax:</td>
+      <td><%= number_to_currency @total_before_taxes %></td>
+    </tr>
+    <% if @pst > 0 %>
+      <tr>
+        <td>Estimated PST(<%= number_to_percentage @pst * 100 %>):</td>
+        <td><%= number_to_currency @pst_price %></td>
+      </tr>
+    <% end %>
+    <% if @gst > 0 %>
+      <tr>
+        <td>Estimated GST(<%= number_to_percentage @gst * 100 %>):</td>
+        <td><%= number_to_currency @gst_price %></td>
+      </tr>
+    <% end %>
+    <% if @hst > 0 %>
+      <tr>
+        <td>Estimated HST(<%= number_to_percentage @hst * 100 %>):</td>
+        <td><%= number_to_currency @hst_price %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td><h2 class="has-text-danger">Order total</h2></td>
+      <td><h2 class="has-text-danger"><%= number_to_currency @total %></h2></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

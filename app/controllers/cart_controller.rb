@@ -1,4 +1,5 @@
 class CartController < ApplicationController
+  before_action :authenticate_user!
   def index
     # TODO: Remove from cart button is not available for the first product
     @products = Product.find(session[:shopping_cart])

@@ -1,4 +1,5 @@
 class CheckoutController < ApplicationController
+  before_action :authenticate_user!
   def index
     process_tax
   end
@@ -18,11 +19,16 @@ class CheckoutController < ApplicationController
     if order && order.valid?
       # Create OrderProducts
       @products.each do |product|
+        if product.sale != nil
+          price = product.price - product.price * product.sale
+        else
+          price = product.price
+        end
         OrderProduct.create(
           order_id: order.id,
           product_id: product.id,
           quantity: params[product.id.to_s].to_i,
-          price: product.price
+          price: price
         )
       end
 
