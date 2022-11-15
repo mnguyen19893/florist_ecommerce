@@ -1,4 +1,5 @@
 We can find <%= @products.count %> products with the filter "<%= @filter %>"
+<%= render 'paginate', products: @products %>
 <div class="columns is-multiline is-mobile">
 
   <% @products.each do |product| %>

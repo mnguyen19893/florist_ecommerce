@@ -1,11 +1,15 @@
 class OrderController < ApplicationController
   before_action :authenticate_user!
   def index
-    @orders = Order.includes(:products, :order_products).all.order('created_at DESC')
+    @orders = current_user.orders.includes(:products, :order_products).all.order('created_at DESC')
   end
 
   def show
-    @order = Order.includes(:products, :order_products).find(params[:id])
+    @order = current_user.orders.includes(:products, :order_products).find_by_id(params[:id])
+    if @order == nil || !@order.valid?
+      flash[:notice] = 'The order is not found.'
+      return redirect_to root_path
+    end
     @products = @order.products
 
     @total_before_taxes = 0

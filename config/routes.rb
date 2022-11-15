@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :cart, only: %i[index create destroy]
 
   # category
-  resources :category, only: [:index, :show]
+  resources :category, only: [:show]
 
   # checkout
   resources :checkout, only: [:index]

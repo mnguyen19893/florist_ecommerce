@@ -1,6 +1,7 @@
 <div class="content">
   <p class="mb-5">
     Found <%= pluralize(@products.length, 'Product') %> found when search for "<%= params[:keywords]%>"
+    <%= render 'paginate', products: @products %>
     <% if @category %>
       , category: "<%= @category.name %>"
     <% end %>
