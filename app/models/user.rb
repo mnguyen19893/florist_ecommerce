@@ -11,6 +11,7 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :orders
 
   def add_address
+    #puts "Hoang add an address"
     Address.create(
       number: '',
       street: '',
@@ -19,5 +20,9 @@ class User < ApplicationRecord
       province_id: Province.first.id,
       user_id: id
     )
+    # unless address.valid?
+    #   puts "address: #{address}"
+    #   puts address.errors.messages
+    # end
   end
 end
