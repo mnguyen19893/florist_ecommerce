@@ -8,10 +8,15 @@ require 'faker'
 AdminUser.destroy_all
 Address.delete_all
 Province.delete_all
-User.delete_all
+
+OrderProduct.delete_all
 Product.delete_all
 Category.delete_all
+Order.delete_all
 OrderStatus.delete_all
+User.delete_all
+Contact.delete_all
+About.delete_all
 
 ########################################################################################################################
 # Provinces and Taxes
@@ -86,6 +91,12 @@ puts "Number of products created: #{Product.count}"
 OrderStatus.create(name: 'new')
 OrderStatus.create(name: 'paid')
 OrderStatus.create(name: 'shipped')
+
+########################################################################################################################
+# About and Contact
+#######################################################################################################################
+About.create(title: 'Floral E-commerce', content: 'We sell flowers online. Check it out')
+Contact.create(title: 'If you have any question, please contact ', content: 'floral@rrc.ca')
 
 ########################################################################################################################
 # Admin user

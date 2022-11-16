@@ -1,7 +1,8 @@
 class Product < ApplicationRecord
   has_one_attached :image do |attachable|
-    attachable.variant :normal, resize_to_limit: [800, 400]
-    attachable.variant :thumb, resize_to_limit: [300, 300]
+    attachable.variant :high, resize_to_limit: [800, 400]
+    attachable.variant :normal, resize_to_limit: [400, 200]
+    attachable.variant :thumb, resize_to_limit: [50, 50]
   end
 
   belongs_to :category
