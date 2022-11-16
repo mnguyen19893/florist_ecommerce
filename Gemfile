@@ -53,6 +53,7 @@ gem 'sass-rails', '>= 6'
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
 gem 'kaminari'
 gem 'stripe'
+gem 'google-cloud-storage'
 
 
 group :development, :test do
