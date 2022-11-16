@@ -52,7 +52,7 @@ class CheckoutController < ApplicationController
           {
             name: 'Taxes',
             description: "Goods and Services taxes",
-            amount: (@total_before_taxes * (@pst_price + @gst_price + @hst_price)).to_i,
+            amount: ((@pst_price + @gst_price + @hst_price) * 100).to_i,
             currency: "cad",
             quantity: 1
           }
