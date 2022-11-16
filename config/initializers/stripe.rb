@@ -4,4 +4,4 @@ Rails.configuration.stripe = {
 }
 Stripe.api_key = Rails.configuration.stripe[:secret_key]
 
-# PUBLISHABLE_KEY=pk_test_dRZYftRVo14McnY92qnOULZB SECRET_KEY=sk_test_Dj9eOiS1VMGiiqWLVQduopgD rails s
+# PUBLISHABLE_KEY=pk_test_dRZYftRVo14McnY92qnOULZB SECRET_KEY=sk_test_Dj9eOiS1VMGiiqWLVQduopgD rails s -b 0.0.0.0
