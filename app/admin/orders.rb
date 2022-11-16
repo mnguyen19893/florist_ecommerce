@@ -1,8 +1,7 @@
 ActiveAdmin.register Order do
-  includes :user, :order_products, :products
+  # includes :user, :order_products, :products
 
-  # , :payment_id, :pst, :gst, :hst
-  permit_params :user_id, :order_status_id, order_products_attributes: [:quantity]
+  permit_params :user_id, :order_status_id, order_products_attributes: [:id, :order_id, :product_id, :price, :quantity, :_destroy]
 
   index do
     selectable_column
@@ -37,7 +36,7 @@ ActiveAdmin.register Order do
   show do |order|
     attributes_table do
       row :user
-      row :order_status_id
+      row :order_status
       row :order_products do |order|
         order.order_products.map { |op| "#{op.product.name} - #{number_to_currency op.price}" }.join('<br>').html_safe
       end
@@ -66,13 +65,16 @@ ActiveAdmin.register Order do
   form do |f|
     f.semantic_errors
 
-    f.inputs "Order" do
-      f.input :user
+    f.inputs 'Order' do
+      f.input :user, required: true
+      #, as: :select, required: true, collection: User.all.pluck(:email)
+      #, :collection => User.all.map { |u| u.email}
       f.input :order_status
-      f.has_many :order_products, allow_destroy: true do |n_f|
+      f.has_many :order_products, heading: false, allow_destroy: true do |n_f|
+        n_f.input :order#, :collection => Order.all.map { |order| "##{order.id}"}
         n_f.input :product
-        n_f.input :price
         n_f.input :quantity
+        n_f.input :price
       end
     end
 
