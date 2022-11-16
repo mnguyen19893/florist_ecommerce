@@ -1,5 +1,5 @@
 <%= render 'paginate', products: @products %>
-<div class="columns is-multiline is-mobile">
+<div class="columns is-multiline">
   <% @products.each do |product| %>
     <%= render 'product', product: product %>
   <% end %>
