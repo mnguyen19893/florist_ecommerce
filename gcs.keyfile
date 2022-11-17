@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "floral-ecommerce-368819",
+  "private_key_id": "d5f10649741ce767edfe5d276e0d7563d04525af",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCwopxPgAQyPuDn\n6Q9CqaEhePxvdpEVbmnVH088AK7R02H2zBSiP7otYrnoM0jeEV1P2/q5K8KUPXRm\nQkIdIOm22dklyboc29F1RCRALHKC2XvTbwZjWUA6ogp/+T0g8S64bNowT+4OxY+V\nmyeS6fbYqJbcZy8NO3tjWbk4EGwReI50xbt17FmgXvBnRm6CGGa4gSw6ZzaYPPUz\nufuB7HySWJWDg80Vwn3J8IC3NFL2yKZ3UaHzuqXm6vfhnVcRhZf/v1oAByJ3LHeh\n4d+ZtxBOHVWL2DQmzBoqS36oAyEMNwxdIHYuuDN+wWBgCrH60JBkLYlzcpGCaz/z\nFGQ/lo/pAgMBAAECggEAGhj8hVaByDa4Hiu2IIBVmU955LIc/5CfvGhy2Ye0TLYx\nrDg8+Df4Nwp2M1OYeY8RPWJgKgnIJwTpdM5nXExnm6eWSNoEUI095liaDo1Cogim\nHfgydm1SaxdT+9KEcKCR6ZfTqP22S6Ju84jIERHWce5+07O/JPJb6bLxBdKPVQk+\na/eNRjHZ5JoEj4JhqOy+LJoe7Ic3FKxBfsn4jqAnAveGkTr7fT+LnW+dxQGg7SC1\nh5uVr4IrFniwA7ix+OimtzNW/OB/voKKrAlZkwZsxCh4akYsMtXKMAR9Hb5tuBIW\n6nsGaoGgskrshoR3ix8SExq878pXo7yAwySNXvP9zQKBgQD1wMsqOi+zJUbEnpoI\niF6OqtwcB0p91lSB7uAxxN4ZtrZXrayXbsTf6kibgZVm2wkXazWJFHJQKNgCmzh7\n43qFvGKiTbicKV+aAPsY5YyrKr5vI6iOT6IMS9O58Iq7J1ka0I/dpIZ02pDQEqZo\ngP8TyQckz4AKRDb8XkOo0KhIywKBgQC4AAq28NWhyhE9bjrysoR9QXtozY9QkWKd\nwPcZRmIgC7Xe9Jmdwmf0TN2PKdhmhe7rH27XMpD/WjJoFbPjQQJiFWlMD7Ma6YNW\nK8D0HU9VqA6lMON3mZ3g+3PaIBkMz5bg2gDoV6S+uQhveyE9CM5BkK95OMKO6G9r\nU74ve7DXmwKBgQCXjqN80k+Ser2vCmTSOE+gSozeGDz/aAvL6eaHqvKSBxVi8y+K\nYHy33sOSa5MY0KJFuA9XD64D83xr9xAZj0uDaI+nqqjcXcOgtVQloYNkGENDRUlx\nInk8fhMAC/FyxCx2lgLzXMCzFgvS1n2b21nz+LkYIYPEURdcAkJVvQDbiwKBgFQ+\ngKld/xICaH5N1+OC5LJMpupHI5Tp29MKpJgH56lwcybPqv3WIq5x+wcvS4s1SzyP\nuboBxu2DKI0LUr975lFuKDXRAloSDDYJ9mBOgyJevcXYam06AlUeC98UzyNUcGom\npj+60Q0Zvsj8AS3muDjAu/aujDXOKiVjxDINWdx9AoGAGrrjF+p8FNplDLcBEX0N\n/Xo1g0lXPgagzdVtA55eOUAwdmLSyiTCrXFDRWpPbcoGDJgenqidn1bxzvuqhsEt\nsRtmrfw6UDMlaK6QWMgcKIQXuJJezUwbkiARpde6B6SR6DENSpI8Vqiyzs0rZUFJ\n4akqISM6bHhYKW66ypUBPSg=\n-----END PRIVATE KEY-----\n",
+  "client_email": "floral-ecommerce@floral-ecommerce-368819.iam.gserviceaccount.com",
+  "client_id": "107800279561201140791",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/floral-ecommerce%40floral-ecommerce-368819.iam.gserviceaccount.com"
+}
