@@ -55,37 +55,6 @@ address = Address.create(
 )
 
 ########################################################################################################################
-# Create products and categories
-########################################################################################################################
-csv_file = Rails.root.join('db/Flower_Table.csv')
-csv_data = File.read(csv_file)
-flowers = CSV.parse(csv_data, headers: true)
-
-i = 0
-flowers.each do |flower|
-  category = Category.find_or_create_by(name: flower['Flower_group'])
-  if category && category.valid?
-    f = category.products.create(
-      name: flower['Flower name'],
-      description_url: flower['url'],
-      containers: flower['Containers'],
-      flower_time: flower['Flower Time'],
-      price: Faker::Commerce.price(range: 5.00..200.00)
-    )
-    puts "Creating flower ##{i} #{f.name}"
-    query = URI.encode_www_form_component([f.name + ' flower'])
-    downloaded_image = URI.open("https://source.unsplash.com/600x600/?#{query}")
-    f.image.attach(io: downloaded_image, filename: "m-#{f.name}.jpg")
-    sleep(1)
-
-    i += 1
-    break if i == 20
-  end
-end
-puts "Number of categories created: #{Category.count}"
-puts "Number of products created: #{Product.count}"
-
-########################################################################################################################
 # Order Status
 ########################################################################################################################
 OrderStatus.create(name: 'new')
@@ -104,3 +73,39 @@ Contact.create(title: 'If you have any question, please contact ', content: 'flo
 if Rails.env.development?
   AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
 end
+
+
+########################################################################################################################
+# Create products and categories
+########################################################################################################################
+csv_file = Rails.root.join('db/Flower_Table.csv')
+csv_data = File.read(csv_file)
+flowers = CSV.parse(csv_data, headers: true)
+
+i = 0
+flowers.each do |flower|
+  # if i < 50
+  #   i += 1
+  # else
+    category = Category.find_or_create_by(name: flower['Flower_group'])
+    if category && category.valid?
+      f = category.products.create(
+        name: flower['Flower name'],
+        description_url: flower['url'],
+        containers: flower['Containers'],
+        flower_time: flower['Flower Time'],
+        price: Faker::Commerce.price(range: 5.00..200.00)
+      )
+      puts "Creating flower ##{i} #{f.name}"
+      query = URI.encode_www_form_component([f.name + ' flower'])
+      downloaded_image = URI.open("https://source.unsplash.com/600x600/?#{query}")
+      f.image.attach(io: downloaded_image, filename: "m-#{f.name}.jpg")
+      sleep(1)
+
+      i += 1
+      break if i == 50
+    # end
+  end
+end
+puts "Number of categories created: #{Category.count}"
+puts "Number of products created: #{Product.count}"
