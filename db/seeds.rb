@@ -83,7 +83,7 @@ csv_data = File.read(csv_file)
 flowers = CSV.parse(csv_data, headers: true)
 
 i = 0
-max_products = 50
+max_products = 10
 flowers.each do |flower|
   # if i < 50
   #   i += 1

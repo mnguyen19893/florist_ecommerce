@@ -19,5 +19,7 @@ services:
       - db
     environment:
       - DATABASE_URL=postgres://postgres:password@db:5432/postgres
+      - PUBLISHABLE_KEY=pk_test_dRZYftRVo14McnY92qnOULZB
+      - SECRET_KEY=sk_test_Dj9eOiS1VMGiiqWLVQduopgD
 volumes:
   postgres:

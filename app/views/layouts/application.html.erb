@@ -8,7 +8,7 @@
   <%= csp_meta_tag %>
 
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-  <%= javascript_importmap_tags %>
+  <%= javascript_importmap_tags shim: false %>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
 
@@ -46,26 +46,27 @@
 </section>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const burger = document.getElementsByClassName("navbar-burger")[0]
-        const navbar_menu = document.getElementsByClassName("navbar-menu")[0]
-
-        if (burger != null) {
-            burger.addEventListener('click', function(e) {
-                e.preventDefault()
-                console.log("click")
-                if (burger.classList.contains("is-active")) {
-                    burger.classList.remove("is-active")
-                    navbar_menu.classList.remove("is-active")
-                    console.log("Contain is-acitve")
-                } else {
-                    burger.classList.add("is-active")
-                    navbar_menu.classList.add("is-active")
-                    console.log("not contain is-acitve")
-                }
-            }, false)
-        }
-    })
+    // document.addEventListener('DOMContentLoaded', () => {
+    //     console.log("Hoang")
+    //     const burger = document.getElementsByClassName("navbar-burger")[0]
+    //     const navbar_menu = document.getElementsByClassName("navbar-menu")[0]
+    //
+    //     if (burger != null) {
+    //         burger.addEventListener('click', function(e) {
+    //             e.preventDefault()
+    //             console.log("click")
+    //             if (burger.classList.contains("is-active")) {
+    //                 burger.classList.remove("is-active")
+    //                 navbar_menu.classList.remove("is-active")
+    //                 console.log("Contain is-acitve")
+    //             } else {
+    //                 burger.classList.add("is-active")
+    //                 navbar_menu.classList.add("is-active")
+    //                 console.log("not contain is-acitve")
+    //             }
+    //         }, false)
+    //     }
+    // })
 </script>
 </body>
 </html>

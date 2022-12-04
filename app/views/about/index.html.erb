@@ -1,4 +1,9 @@
 <div class="content">
   <h1><%= @about.title %></h1>
   <p><%= @about.content %></p>
+
+  <figure class="image is-square">
+    <%= image_tag asset_path('ERB.png'), alt: "ERB diagram" %>
+    <!--    <img src="<%#= asset_path('diagram.png') %>">-->
+  </figure>
 </div>
